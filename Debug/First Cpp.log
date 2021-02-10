@@ -1,6 +1,0 @@
-﻿  Main.cpp
-C:\Users\Oliver Lebert\Documents\GitHub\First Cpp\Main.cpp(8,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Oliver Lebert\Documents\GitHub\First Cpp\Main.cpp(57,41): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\First Cpp\Main.cpp(57,34): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\First Cpp\Main.cpp(73,20): warning C4244: 'initializing': conversion from 'Uint32' to 'float', possible loss of data
-  First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\First Cpp\Debug\First Cpp.exe
