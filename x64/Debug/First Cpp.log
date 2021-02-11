@@ -1,1 +1,10 @@
-﻿  First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe
+﻿  Game.cpp
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Game.cpp(68,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Pong.cpp
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(6,59): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(20,44): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(25,44): warning C4244: '+=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(30,45): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(35,45): warning C4244: '+=': conversion from 'const float' to 'int', possible loss of data
+  Generating Code...
+  First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe
