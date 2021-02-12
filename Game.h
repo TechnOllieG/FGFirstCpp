@@ -12,6 +12,7 @@ public:
 	void OnApplicationStart();
 	void OnApplicationQuit();
 	void Update();
+	void FixedUpdate();
 	void DrawUpdate();
 	void ClearScreen();
 	void CalculateTime();

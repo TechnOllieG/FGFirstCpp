@@ -1,44 +1,38 @@
 #include "Pong.h"
-#include "Library.h"
+
+using namespace std;
 
 Pong::Pong(Vector2Int screenResolution)
 {
     leftBouncerYPos = (screenResolution.y - bouncerWidth) * 0.5;
     rightBouncerYPos = leftBouncerYPos;
+    inputs = Input();
+    this->screenResolution = screenResolution;
 }
 
 void Pong::HandleInput(SDL_Event event, float deltaTime)
 {
-    if (event.type != SDL_KEYDOWN)
-        return;
+    inputs.PollKeys(event);
 
-    SDL_Keycode code = event.key.keysym.sym;
-    switch (code)
-    {
-    case SDLK_w:
-    {
-        leftBouncerYPos -= bouncerMoveSpeed;
-        break;
-    }
-    case SDLK_s:
-    {
+    if (inputs.leftBouncerDown)
         leftBouncerYPos += bouncerMoveSpeed;
-        break;
-    }
-    case SDLK_UP:
-    {
-        rightBouncerYPos -= bouncerMoveSpeed;
-        break;
-    }
-    case SDLK_DOWN:
-    {
+
+    if(inputs.leftBouncerUp)
+        leftBouncerYPos -= bouncerMoveSpeed;
+
+    if (inputs.rightBouncerDown)
         rightBouncerYPos += bouncerMoveSpeed;
-        break;
-    }
-    }
+    
+    if (inputs.rightBouncerUp)
+        rightBouncerYPos -= bouncerMoveSpeed;
+
+    float min = bouncerHeight * 0.5;
+    float max = screenResolution.y - bouncerHeight * 0.5;
+    leftBouncerYPos = Library::clamp(leftBouncerYPos, min, max);
+    rightBouncerYPos = Library::clamp(rightBouncerYPos, min, max);
 }
 
-void Pong::DrawGraphics(SDL_Renderer* renderer, Vector2Int resolution)
+void Pong::DrawGraphics(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     
@@ -50,10 +44,28 @@ void Pong::DrawGraphics(SDL_Renderer* renderer, Vector2Int resolution)
 
     SDL_Rect rightRect = SDL_Rect
     {
-        resolution.x - horizontalOffsetFromEdge - bouncerWidth, rightBouncerYPos - ((int)(bouncerHeight * 0.5)),
+        screenResolution.x - horizontalOffsetFromEdge - bouncerWidth, rightBouncerYPos - ((int)(bouncerHeight * 0.5)),
         bouncerWidth, bouncerHeight
     };
 
     SDL_RenderFillRect(renderer, &leftRect);
     SDL_RenderFillRect(renderer, &rightRect);
+}
+
+Ball::Ball(Vector2Int screenResolution)
+{
+    this->screenResolution = screenResolution;
+    rect = new SDL_Rect();
+    SetPosition(screenResolution.x * 0.5f, screenResolution.y * 0.5f);
+}
+
+Ball::~Ball()
+{
+    delete rect;
+}
+
+void Ball::SetPosition(float x, float y)
+{
+    rect->x = x - diameter * 0.5f;
+    rect->y = y - diameter * 0.5f;
 }

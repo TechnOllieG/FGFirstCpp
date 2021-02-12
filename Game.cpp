@@ -38,9 +38,14 @@ void Game::Update()
     }
 }
 
+void Game::FixedUpdate()
+{
+
+}
+
 void Game::DrawUpdate()
 {
-    pong->DrawGraphics(renderer, resolution);
+    pong->DrawGraphics(renderer);
 }
 
 void Game::OnApplicationStart()
