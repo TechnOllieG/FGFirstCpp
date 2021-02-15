@@ -6,7 +6,7 @@ int main(int argc, char** args)
 
     main.OnApplicationStart();
 
-    main.Update();
+    main.GameLoop();
 
     main.OnApplicationQuit();
 

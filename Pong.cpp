@@ -1,4 +1,6 @@
 #include "Pong.h"
+#include <tgmath.h>
+#include <iostream>
 
 using namespace std;
 
@@ -8,21 +10,40 @@ Pong::Pong(Vector2Int screenResolution)
     rightBouncerYPos = leftBouncerYPos;
     inputs = Input();
     this->screenResolution = screenResolution;
+    ball = new Ball(screenResolution);
 }
 
-void Pong::HandleInput(SDL_Event event, float deltaTime)
+Pong::~Pong()
+{
+    delete ball;
+}
+
+void Pong::HandleInput(SDL_Event event)
 {
     inputs.PollKeys(event);
+}
 
+void Pong::Start()
+{
+
+}
+
+void Pong::Update(float deltaTime, float currentTime)
+{
+
+}
+
+void Pong::FixedUpdate(float fixedTimeStep, float currentTime)
+{
     if (inputs.leftBouncerDown)
         leftBouncerYPos += bouncerMoveSpeed;
 
-    if(inputs.leftBouncerUp)
+    if (inputs.leftBouncerUp)
         leftBouncerYPos -= bouncerMoveSpeed;
 
     if (inputs.rightBouncerDown)
         rightBouncerYPos += bouncerMoveSpeed;
-    
+
     if (inputs.rightBouncerUp)
         rightBouncerYPos -= bouncerMoveSpeed;
 
@@ -38,24 +59,26 @@ void Pong::DrawGraphics(SDL_Renderer* renderer)
     
     SDL_Rect leftRect = SDL_Rect 
     {
-        horizontalOffsetFromEdge, leftBouncerYPos - ((int)(bouncerHeight * 0.5)),
+        horizontalOffsetFromEdge, (int) round(leftBouncerYPos) - ((int)(bouncerHeight * 0.5)),
         bouncerWidth, bouncerHeight
     };
 
     SDL_Rect rightRect = SDL_Rect
     {
-        screenResolution.x - horizontalOffsetFromEdge - bouncerWidth, rightBouncerYPos - ((int)(bouncerHeight * 0.5)),
+        screenResolution.x - horizontalOffsetFromEdge - bouncerWidth, (int) round(rightBouncerYPos) - ((int)(bouncerHeight * 0.5)),
         bouncerWidth, bouncerHeight
     };
 
     SDL_RenderFillRect(renderer, &leftRect);
     SDL_RenderFillRect(renderer, &rightRect);
+    SDL_RenderFillRect(renderer, ball->rect);
+    
 }
 
 Ball::Ball(Vector2Int screenResolution)
 {
     this->screenResolution = screenResolution;
-    rect = new SDL_Rect();
+    rect = new SDL_Rect {0, 0, diameter, diameter};
     SetPosition(screenResolution.x * 0.5f, screenResolution.y * 0.5f);
 }
 
@@ -66,6 +89,7 @@ Ball::~Ball()
 
 void Ball::SetPosition(float x, float y)
 {
+    position = Vector2Int(x, y);
     rect->x = x - diameter * 0.5f;
     rect->y = y - diameter * 0.5f;
 }

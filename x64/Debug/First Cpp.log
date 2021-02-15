@@ -1,20 +1,11 @@
-﻿  Game.cpp
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Game.cpp(68,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Input.cpp
-  Pong.cpp
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(7,59): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(18,44): warning C4244: '+=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(21,44): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(24,45): warning C4244: '+=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(27,45): warning C4244: '-=': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(29,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(30,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(31,38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(31,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(32,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(32,38): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(69,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(70,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Library.h(50): warning C4715: 'Library::clamp': not all control paths return a value
-  First Cpp.vcxproj -> C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe
+﻿  Pong.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\tgmath.h(27): warning UCRT4000: The Universal CRT implementation of tgmath.h does not conform to the C99 standard. Functionality equivalent to the type-generic functions provided by tgmath.h is available in <ctgmath> when compiling as C++. If compiling in C++17 mode or higher (/std:c++17), this header will automatically include <ctgmath> instead. You can define _CRT_SILENCE_NONCONFORMING_TGMATH_H to acknowledge that you have received this warning.
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(9,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(50,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(51,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(93,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(94,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Library.h(50): warning C4715: 'Library::clamp': not all control paths return a value
+  First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe

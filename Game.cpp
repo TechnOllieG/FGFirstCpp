@@ -4,7 +4,7 @@
 Game::Game()
 {
     applicationRunning = 0;
-    totalTime = 0;
+    currentTime = 0;
     deltaTime = 0;
     resolution = Vector2Int(800, 600);
     renderer = 0;
@@ -18,29 +18,59 @@ Game::~Game()
     delete pong;
 }
 
-void Game::Update()
+void Game::GameLoop()
 {
+    Game::Start();
+
     while (applicationRunning)
     {
-        CalculateTime();
         ClearScreen();
+
+        float tempTime = SDL_GetTicks() * 0.001;
+        deltaTime = tempTime - currentTime;
+        currentTime = tempTime;
+
+        accumulator += deltaTime;
+
+        while (accumulator >= fixedTimeStep)
+        {
+            FixedUpdate();
+            accumulator -= fixedTimeStep;
+        }
 
         while (SDL_PollEvent(&evt))
         {
             if (evt.type == SDL_QUIT)
                 applicationRunning = false;
 
-            pong->HandleInput(evt, deltaTime);
+            HandleInput();
         }
+
+        Update();
 
         DrawUpdate();
         SDL_RenderPresent(renderer);
     }
 }
 
+void Game::Start()
+{
+    pong->Start();
+}
+
+void Game::HandleInput()
+{
+    pong->HandleInput(evt);
+}
+
+void Game::Update()
+{
+    pong->Update(deltaTime, currentTime);
+}
+
 void Game::FixedUpdate()
 {
-
+    pong->FixedUpdate(fixedTimeStep, currentTime);
 }
 
 void Game::DrawUpdate()
@@ -66,13 +96,6 @@ void Game::OnApplicationQuit()
     SDL_DestroyWindow(window);
 
     SDL_Quit();
-}
-
-void Game::CalculateTime()
-{
-    float tempTime = SDL_GetTicks() * 0.001;
-    deltaTime = tempTime - totalTime;
-    totalTime = tempTime;
 }
 
 void Game::ClearScreen()
