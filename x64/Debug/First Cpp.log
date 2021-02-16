@@ -1,11 +1,37 @@
 ﻿  Pong.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\tgmath.h(27): warning UCRT4000: The Universal CRT implementation of tgmath.h does not conform to the C99 standard. Functionality equivalent to the type-generic functions provided by tgmath.h is available in <ctgmath> when compiling as C++. If compiling in C++17 mode or higher (/std:c++17), this header will automatically include <ctgmath> instead. You can define _CRT_SILENCE_NONCONFORMING_TGMATH_H to acknowledge that you have received this warning.
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(9,59): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(50,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(51,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(93,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(94,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Library.h(50): warning C4715: 'Library::clamp': not all control paths return a value
-  First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(66,93): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(67,89): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(102,30): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(102,27): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(103,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(104,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xutility(4393,16): error C3863: array type 'bool [3]' is not assignable
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xutility(4429): message : see reference to function template instantiation '_OutIt std::_Copy_unchecked<_InIt,_OutIt>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=bool (*)[3],
+              _InIt=const bool [][3]
+          ]
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(11): message : see reference to function template instantiation '_OutIt (*std::copy<const bool[][3],bool(*)[3]>(_InIt,_InIt,_OutIt))[3]' being compiled
+          with
+          [
+              _OutIt=bool (*)[3],
+              _InIt=const bool [][3]
+          ]
+  SymbolDisplay.cpp
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.cpp(33,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xutility(4393,16): error C3863: array type 'bool [3]' is not assignable
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include\xutility(4429): message : see reference to function template instantiation '_OutIt std::_Copy_unchecked<_InIt,_OutIt>(_InIt,_InIt,_OutIt)' being compiled
+          with
+          [
+              _OutIt=bool (*)[3],
+              _InIt=const bool [][3]
+          ]
+C:\Users\Oliver.Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(11): message : see reference to function template instantiation '_OutIt (*std::copy<const bool[][3],bool(*)[3]>(_InIt,_InIt,_OutIt))[3]' being compiled
+          with
+          [
+              _OutIt=bool (*)[3],
+              _InIt=const bool [][3]
+          ]
+  Generating Code...

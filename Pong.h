@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "Library.h"
 #include "Input.h"
+#include "Game.h"
 
 class Ball
 {
@@ -13,11 +14,11 @@ public:
 	SDL_Rect* rect;
 private:
 	const int diameter = 12;
-	const float speed = 6;
+	const float speed = 6.0f;
 	Vector2Int screenResolution;
 };
 
-class Pong
+class Pong : public Game
 {
 public:
 	Pong(Vector2Int screenResolution);
@@ -30,7 +31,7 @@ public:
 
 private:
 	const int horizontalOffsetFromEdge = 10;
-	const float bouncerMoveSpeed = 6;
+	const float bouncerMoveSpeed = 6.0f;
 	const int bouncerWidth = 8;
 	const int bouncerHeight = 60;
 	float leftBouncerYPos;

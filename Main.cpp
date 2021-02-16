@@ -1,8 +1,8 @@
-#include "Game.h"
+#include "GameHandler.h"
 
 int main(int argc, char** args)
 {
-    Game main;
+    GameHandler main;
 
     main.OnApplicationStart();
 
