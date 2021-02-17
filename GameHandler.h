@@ -1,6 +1,6 @@
 #pragma once
 #include "SDL.h"
-#include "Library.h"
+#include "Pong.h"
 
 class Game;
 

@@ -1,5 +1,4 @@
 #include "GameHandler.h"
-#include "Pong.h"
 #include "Game.h"
 
 GameHandler::GameHandler()
