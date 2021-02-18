@@ -338,11 +338,12 @@ public:
 	void Draw(SDL_Renderer* renderer);
 
     /// <summary>
-    /// Takes input text and returns a vector of SymbolDisplays containing the visual representation of the input text. If position.x == -1, it will assume the text should be horizontally centered.
+    /// Takes input text and returns a vector of SymbolDisplays containing the visual representation of the input text.
     /// </summary>
     /// <param name="text">Input text</param>
     /// <param name="screenResolution">The current screen resolution</param>
-    /// <param name="position">The position of the text (top left corner of the first character), if x == -1, it will assume text should be horizontally centered</param>
+    /// <param name="pixelSize">The pixel size of the symbol (one symbol is 3 pixels wide and 5 pixels high)</param>
+    /// <param name="position">The position of the text (top left corner of the first symbol)</param>
     /// <returns>vector with SymbolDisplays</returns>
     static std::vector<SymbolDisplay> GetSymbols(std::string text, Vector2Int screenResolution, int pixelSize, Vector2Int position)
     {
@@ -372,11 +373,12 @@ public:
     }
 
     /// <summary>
-    /// Takes input text and returns a vector of SymbolDisplays containing the centered visual representation of the input text. If position.x == -1, it will assume the text should be horizontally centered.
+    /// Takes input text and returns a vector of SymbolDisplays containing the horizontally centered visual representation of the input text.
     /// </summary>
     /// <param name="text">Input text</param>
     /// <param name="screenResolution">The current screen resolution</param>
-    /// <param name="position">The position of the text (top left corner of the first character), if x == -1, it will assume text should be horizontally centered</param>
+    /// <param name="pixelSize">The pixel size of the symbol (one symbol is 3 pixels wide and 5 pixels high)</param>
+    /// <param name="yPosition">The y position of the horizontally centered text (based on the top of the symbol)</param>
     /// <returns>vector with SymbolDisplays</returns>
     static std::vector<SymbolDisplay> GetSymbolsCentered(std::string text, Vector2Int screenResolution, int pixelSize, int yPosition)
     {
