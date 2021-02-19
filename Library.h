@@ -126,6 +126,46 @@ public:
 	int y;
 };
 
+template <class T>
+class Matrix2D
+{
+public:
+	int count;
+	int rows;
+	int columns;
+
+	Matrix2D(int rows, int columns)
+	{
+		this->count = rows * columns;
+		this->rows = rows;
+		this->columns = columns;
+
+		m_arry = new T*[rows];
+
+		for (int i = 0; i < rows; i++)
+		{
+			m_arry[i] = new T[columns];
+		}
+	}
+
+	~Matrix2D()
+	{
+		for (int i = 0; i < rows; i++)
+		{
+			delete[] m_arry[i];
+		}
+
+		delete[] m_arry;
+	}
+
+	T* At(int row, int column)
+	{
+		return &m_arry[row][column];
+	}
+private:
+	T** m_arry;
+};
+
 class Library
 {
 public:
