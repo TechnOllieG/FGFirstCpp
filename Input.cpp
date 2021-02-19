@@ -17,22 +17,22 @@ void Input::PollKeys(SDL_Event event)
     {
     case SDLK_w:
     {
-        leftBouncerUp = state;
+        m_leftBouncerUp = state;
         break;
     }
     case SDLK_s:
     {
-        leftBouncerDown = state;
+        m_leftBouncerDown = state;
         break;
     }
     case SDLK_UP:
     {
-        rightBouncerUp = state;
+        m_rightBouncerUp = state;
         break;
     }
     case SDLK_DOWN:
     {
-        rightBouncerDown = state;
+        m_rightBouncerDown = state;
         break;
     }
     }

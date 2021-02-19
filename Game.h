@@ -12,5 +12,5 @@ public:
 	virtual void Update(float deltaTime, float currentTime) {};
 	virtual void FixedUpdate(float fixedTimeStep, float currentTime) {};
 	virtual void DrawGraphics(SDL_Renderer* renderer) {};
-	std::string name = "Game";
+	std::string m_name = "Game";
 };

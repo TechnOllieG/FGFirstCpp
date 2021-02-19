@@ -421,7 +421,7 @@ extern DECLSPEC Uint8 SDLCALL SDL_JoystickGetHat(SDL_Joystick *joystick,
  *  The ball indices start at index 0.
  */
 extern DECLSPEC int SDLCALL SDL_JoystickGetBall(SDL_Joystick *joystick,
-                                                int ball, int *dx, int *dy);
+                                                int m_ball, int *dx, int *dy);
 
 /**
  *  Get the current state of a button on a joystick.

@@ -8,7 +8,6 @@ class GameHandler
 {
 public:
 	GameHandler();
-	~GameHandler();
 	void OnApplicationStart();
 	void OnApplicationQuit();
 	void GameLoop();
@@ -20,15 +19,16 @@ private:
 	void DrawUpdate();
 	void ClearScreen();
 
-	SDL_Renderer* renderer;
-	SDL_Window* window;
-	SDL_Event evt;
-	bool applicationRunning;
+	SDL_Renderer* m_renderer = 0;
+	SDL_Window* m_window = 0;
+	SDL_Event m_evt;
+	bool m_applicationRunning = false;
 	/// <summary>Total time since game start in seconds</summary>
-	float currentTime;
-	float deltaTime;
-	Vector2Int resolution;
-	Game* game;
-	const float fixedTimeStep = 0.02f;
-	float accumulator = 0.0f;
+	float m_currentTime = 0.0f;
+	float m_deltaTime = 0.0f;
+	float m_accumulator = 0.0f;
+	Vector2Int m_resolution = Vector2Int(800, 600);;
+	Game* m_game;
+
+	const float m_fixedTimeStep = 0.02f;
 };

@@ -53,56 +53,56 @@ public:
 	{
 		return a.x * b.x + a.y * b.y;
 	}
+
+	Vector2 operator+(const Vector2 rhs)
+	{
+		return Vector2(x + rhs.x, y + rhs.y);
+	}
+
+	void operator+=(const Vector2 rhs)
+	{
+		x += rhs.x;
+		y += rhs.y;
+	}
+
+	Vector2 operator-(const Vector2 rhs)
+	{
+		return Vector2(x - rhs.x, y - rhs.y);
+	}
+
+	Vector2 operator-()
+	{
+		return Vector2(-x, -y);
+	}
+
+	void operator-=(const Vector2 rhs)
+	{
+		x -= rhs.x;
+		y -= rhs.y;
+	}
+
+	Vector2 operator*(const float rhs)
+	{
+		return Vector2(x * rhs, y * rhs);
+	}
+
+	void operator*=(const float rhs)
+	{
+		x *= rhs;
+		y *= rhs;
+	}
+
+	Vector2 operator*(const Vector2 rhs)
+	{
+		return Vector2(x * rhs.x, y * rhs.y);
+	}
+
+	void operator*=(const Vector2 rhs)
+	{
+		x *= rhs.x;
+		y *= rhs.y;
+	}
 };
-
-static Vector2 operator+(Vector2 lhs, const Vector2 rhs)
-{
-	return Vector2(lhs.x + rhs.x, lhs.y + rhs.y);
-}
-
-static void operator+=(Vector2 lhs, const Vector2 rhs)
-{
-	lhs.x += rhs.x;
-	lhs.y += rhs.y;
-}
-
-static Vector2 operator-(Vector2 lhs, const Vector2 rhs)
-{
-	return Vector2(lhs.x - rhs.x, lhs.y - rhs.y);
-}
-
-static Vector2 operator-(Vector2 current)
-{
-	return Vector2(-current.x, -current.y);
-}
-
-static void operator-=(Vector2 lhs, const Vector2 rhs)
-{
-	lhs.x -= rhs.x;
-	lhs.y -= rhs.y;
-}
-
-static Vector2 operator*(Vector2 lhs, const float rhs)
-{
-	return Vector2(lhs.x * rhs, lhs.y * rhs);
-}
-
-static void operator*=(Vector2 lhs, const float rhs)
-{
-	lhs.x *= rhs;
-	lhs.y *= rhs;
-}
-
-static Vector2 operator*(Vector2 lhs, const Vector2 rhs)
-{
-	return Vector2(lhs.x * rhs.x, lhs.y * rhs.y);
-}
-
-static void operator*=(Vector2 lhs, const Vector2 rhs)
-{
-	lhs.x *= rhs.x;
-	lhs.y *= rhs.y;
-}
 
 struct Vector2Int
 {

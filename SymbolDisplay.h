@@ -327,14 +327,13 @@ static bool sym_z[5][3] =
 class SymbolDisplay
 {
 private:
-    std::vector<SDL_Rect> rects;
-    int pixelSize;
+    std::vector<SDL_Rect> m_rects;
+    int m_pixelSize;
 public:
 	SymbolDisplay(Vector2Int position, int pixelSize, const bool inputData[5][3]);
     SymbolDisplay(Vector2Int position, int pixelSize, int numberToDisplay);
     SymbolDisplay(Vector2Int position, int pixelSize, bool* inputData);
     void Init(Vector2Int position, int pixelSize, bool* inputData);
-    ~SymbolDisplay();
 	void Draw(SDL_Renderer* renderer);
 
     /// <summary>
@@ -345,7 +344,7 @@ public:
     /// <param name="pixelSize">The pixel size of the symbol (one symbol is 3 pixels wide and 5 pixels high)</param>
     /// <param name="position">The position of the text (top left corner of the first symbol)</param>
     /// <returns>vector with SymbolDisplays</returns>
-    static std::vector<SymbolDisplay> GetSymbols(std::string text, Vector2Int screenResolution, int pixelSize, Vector2Int position)
+    static std::vector<SymbolDisplay> GetSymbols(std::string text, Vector2Int m_screenResolution, int pixelSize, Vector2Int position)
     {
         auto output = std::vector<SymbolDisplay>();
         int length = text.length();
@@ -380,7 +379,7 @@ public:
     /// <param name="pixelSize">The pixel size of the symbol (one symbol is 3 pixels wide and 5 pixels high)</param>
     /// <param name="yPosition">The y position of the horizontally centered text (based on the top of the symbol)</param>
     /// <returns>vector with SymbolDisplays</returns>
-    static std::vector<SymbolDisplay> GetSymbolsCentered(std::string text, Vector2Int screenResolution, int pixelSize, int yPosition)
+    static std::vector<SymbolDisplay> GetSymbolsCentered(std::string text, Vector2Int m_screenResolution, int pixelSize, int yPosition)
     {
         auto output = std::vector<SymbolDisplay>();
         int length = text.length();
@@ -400,7 +399,7 @@ public:
                 widthInPixels += 4;
         }
 
-        currentPos.x = (screenResolution.x - widthInPixels * pixelSize) * 0.5f;
+        currentPos.x = (m_screenResolution.x - widthInPixels * pixelSize) * 0.5f;
 
         for (int i = 0; i < length; i++)
         {
@@ -425,28 +424,17 @@ public:
     {
         switch (numberToDraw)
         {
-        case 0:
-            return *sym_zero;
-        case 1:
-            return *sym_one;
-        case 2:
-            return *sym_two;
-        case 3:
-            return *sym_three;
-        case 4:
-            return *sym_four;
-        case 5:
-            return *sym_five;
-        case 6:
-            return *sym_six;
-        case 7:
-            return *sym_seven;
-        case 8:
-            return *sym_eight;
-        case 9:
-            return *sym_nine;
-        default:
-            return *sym_blank;
+            case 0: return *sym_zero;
+            case 1: return *sym_one;
+            case 2: return *sym_two;
+            case 3: return *sym_three;
+            case 4: return *sym_four;
+            case 5: return *sym_five;
+            case 6: return *sym_six;
+            case 7: return *sym_seven;
+            case 8: return *sym_eight;
+            case 9: return *sym_nine;
+            default: return *sym_blank;
         }
     }
 
@@ -456,80 +444,43 @@ public:
 
         switch (characterToDraw)
         {
-        case 'a':
-            return *sym_a;
-        case 'b':
-            return *sym_b;
-        case 'c':
-            return *sym_c;
-        case 'd':
-            return *sym_d;
-        case 'e':
-            return *sym_e;
-        case 'f':
-            return *sym_f;
-        case 'g':
-            return *sym_six;
-        case 'h':
-            return *sym_h;
-        case 'i':
-            return *sym_i;
-        case 'j':
-            return *sym_j;
-        case 'k':
-            return *sym_k;
-        case 'l':
-            return *sym_l;
-        case 'm':
-            return *sym_m;
-        case 'n':
-            return *sym_n;
-        case 'o':
-            return *sym_zero;
-        case 'p':
-            return *sym_p;
-        case 'q':
-            return *sym_q;
-        case 'r':
-            return *sym_r;
-        case 's':
-            return *sym_s;
-        case 't':
-            return *sym_t;
-        case 'u':
-            return *sym_u;
-        case 'v':
-            return *sym_v;
-        case 'w':
-            return *sym_w;
-        case 'x':
-            return *sym_x;
-        case 'y':
-            return *sym_y;
-        case 'z':
-            return *sym_z;
-        case '0':
-            return *sym_zero;
-        case '1':
-            return *sym_one;
-        case '2':
-            return *sym_two;
-        case '3':
-            return *sym_three;
-        case '4':
-            return *sym_four;
-        case '5':
-            return *sym_five;
-        case '6':
-            return *sym_six;
-        case '7':
-            return *sym_seven;
-        case '8':
-            return *sym_eight;
-        case '9':
-            return *sym_nine;
-        default:
-            return *sym_blank;
+            case 'a': return *sym_a;
+            case 'b': return *sym_b;
+            case 'c': return *sym_c;
+            case 'd': return *sym_d;
+            case 'e': return *sym_e;
+            case 'f': return *sym_f;
+            case 'g': return *sym_six;
+            case 'h': return *sym_h;
+            case 'i': return *sym_i;
+            case 'j': return *sym_j;
+            case 'k': return *sym_k;
+            case 'l': return *sym_l;
+            case 'm': return *sym_m;
+            case 'n': return *sym_n;
+            case 'o': return *sym_zero;
+            case 'p': return *sym_p;
+            case 'q': return *sym_q;
+            case 'r': return *sym_r;
+            case 's': return *sym_s;
+            case 't': return *sym_t;
+            case 'u': return *sym_u;
+            case 'v': return *sym_v;
+            case 'w': return *sym_w;
+            case 'x': return *sym_x;
+            case 'y': return *sym_y;
+            case 'z': return *sym_z;
+            case '0': return *sym_zero;
+            case '1': return *sym_one;
+            case '2': return *sym_two;
+            case '3': return *sym_three;
+            case '4': return *sym_four;
+            case '5': return *sym_five;
+            case '6': return *sym_six;
+            case '7': return *sym_seven;
+            case '8': return *sym_eight;
+            case '9': return *sym_nine;
+            default: return *sym_blank;
         }
     }
 #pragma endregion

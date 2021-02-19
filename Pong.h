@@ -3,21 +3,7 @@
 #include "Library.h"
 #include "Input.h"
 #include "Game.h"
-
-class Ball
-{
-public:
-	Ball(Vector2Int screenResolution);
-	~Ball();
-	void SetPosition(float x, float y);
-	void SetPosition(Vector2 pos);
-	Vector2 position;
-	SDL_Rect* rect;
-	const float speed = 10.0f;
-	const int diameter = 12;
-private:
-	Vector2Int screenResolution;
-};
+#include "PongBall.h"
 
 class Pong : public Game
 {
@@ -26,7 +12,6 @@ public:
 	~Pong();
 	void HandleInput(SDL_Event event);
 	void Start();
-	void Update(float deltaTime, float currentTime);
 	void FixedUpdate(float fixedTimeStep, float currentTime);
 	void DrawGraphics(SDL_Renderer* renderer);
 
@@ -40,36 +25,36 @@ private:
 	void ShowPlayerScoredText(SDL_Renderer* renderer);
 	void DrawCounters(SDL_Renderer* renderer);
 
-	const int winningPoints = 11;
-	const int pixelSizeText = 5;
-	const int horizontalOffsetFromEdge = 10;
-	const float bouncerMoveSpeed = 6.0f;
-	const int bouncerWidth = 8;
-	const int bouncerHeight = 60;
-	const float readyTextDurationAtBeginning = 2.0f;
-	const float killCooldown = 1.5f;
-	const int characterWidth = pixelSizeText * 3;
-	const int counterYPos = 10;
-	const int counterXOffsetFromCenter = 20;
-	const int textYPos = 100;
-	const Vector2 leftWallNormal = Vector2(1, 0);
-	const Vector2 rightWallNormal = Vector2(-1, 0);
-	const Vector2 topEdgeNormal = Vector2(0, -1);
-	const Vector2 bottomEdgeNormal = Vector2(0, 1);
-	const Vector2 startBallDirection = leftWallNormal;
+	const int m_winningPoints = 11;
+	const int m_pixelSizeText = 5;
+	const int m_horizontalOffsetFromEdge = 10;
+	const float m_bouncerMoveSpeed = 6.0f;
+	const int m_bouncerWidth = 8;
+	const int m_bouncerHeight = 60;
+	const float m_readyTextDurationAtBeginning = 2.0f;
+	const float m_killCooldown = 1.5f;
+	const int m_characterWidth = m_pixelSizeText * 3;
+	const int m_counterYPos = 10;
+	const int m_counterXOffsetFromCenter = 20;
+	const int m_textYPos = 100;
+	const Vector2 m_leftWallNormal = Vector2(1, 0);
+	const Vector2 m_rightWallNormal = Vector2(-1, 0);
+	const Vector2 m_topEdgeNormal = Vector2(0, -1);
+	const Vector2 m_bottomEdgeNormal = Vector2(0, 1);
+	const Vector2 m_startBallDirection = m_leftWallNormal;
 
-	int playerThatScored = 1;
-	float timeOfDeath = 0.0f;
-	float currentTime = 0.0f;
-	int leftPoints = 0;
-	int rightPoints = 0;
-	float leftBouncerYPos;
-	float rightBouncerYPos;
-	Vector2 ballDirection;
-	SDL_Rect leftBouncer;
-	SDL_Rect rightBouncer;
-	bool gameStarted = 0;
-	Input inputs;
-	Vector2Int screenResolution;
-	Ball* ball;
+	int m_playerThatScored = 1;
+	float m_timeOfDeath = 0.0f;
+	float m_currentTime = 0.0f;
+	int m_leftPoints = 0;
+	int m_rightPoints = 0;
+	float m_leftBouncerYPos;
+	float m_rightBouncerYPos;
+	Vector2 m_ballDirection;
+	SDL_Rect m_leftBouncer;
+	SDL_Rect m_rightBouncer;
+	bool m_gameStarted = false;
+	Input m_inputs;
+	Vector2Int m_screenResolution;
+	PongBall* m_ball;
 };

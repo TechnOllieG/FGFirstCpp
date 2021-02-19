@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PongBall.cpp" />
     <ClCompile Include="GameHandler.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="SymbolDisplay.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PongBall.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameHandler.h" />
     <ClInclude Include="Input.h" />

@@ -7,61 +7,56 @@ using namespace std;
 
 Pong::Pong(Vector2Int screenResolution) : Game(screenResolution)
 {
-    name = "Pong";
-    leftBouncerYPos = (screenResolution.y - bouncerWidth) * 0.5f;
-    rightBouncerYPos = leftBouncerYPos;
-    inputs = Input();
-    this->screenResolution = screenResolution;
-    ball = new Ball(screenResolution);
+    m_name = "Pong";
+    m_leftBouncerYPos = (screenResolution.y - m_bouncerWidth) * 0.5f;
+    m_rightBouncerYPos = m_leftBouncerYPos;
+    m_screenResolution = screenResolution;
+    m_ball = new PongBall();
+    m_ball->SetPosition(screenResolution.x * 0.5f, screenResolution.y * 0.5f);
 }
 
 Pong::~Pong()
 {
-    delete ball;
+    delete m_ball;
 }
 
 void Pong::HandleInput(SDL_Event event)
 {
-    inputs.PollKeys(event);
+    m_inputs.PollKeys(event);
 }
 
 void Pong::Start()
 {
-    leftBouncer = SDL_Rect
+    m_leftBouncer = SDL_Rect
     {
-        horizontalOffsetFromEdge, (int)round(leftBouncerYPos) - ((int)(bouncerHeight * 0.5f)),
-        bouncerWidth, bouncerHeight
+        m_horizontalOffsetFromEdge, (int)round(m_leftBouncerYPos) - ((int)(m_bouncerHeight * 0.5f)),
+        m_bouncerWidth, m_bouncerHeight
     };
 
-    rightBouncer = SDL_Rect
+    m_rightBouncer = SDL_Rect
     {
-        screenResolution.x - horizontalOffsetFromEdge - bouncerWidth, (int)round(rightBouncerYPos) - ((int)(bouncerHeight * 0.5f)),
-        bouncerWidth, bouncerHeight
+        m_screenResolution.x - m_horizontalOffsetFromEdge - m_bouncerWidth, (int)round(m_rightBouncerYPos) - ((int)(m_bouncerHeight * 0.5f)),
+        m_bouncerWidth, m_bouncerHeight
     };
-}
-
-void Pong::Update(float deltaTime, float currentTime)
-{
-
 }
 
 void Pong::FixedUpdate(float fixedTimeStep, float currentTime)
 {
-    this->currentTime = currentTime;
+    this->m_currentTime = currentTime;
 
-    if (currentTime < readyTextDurationAtBeginning)
+    if (currentTime < m_readyTextDurationAtBeginning)
         return;
 
-    if (!gameStarted)
+    if (!m_gameStarted)
     {
-        ballDirection = leftWallNormal;
-        gameStarted = 1;
+        m_ballDirection = m_startBallDirection;
+        m_gameStarted = 1;
     }
 
-    if ((currentTime > killCooldown + 1 && currentTime - timeOfDeath < killCooldown) || rightPoints >= winningPoints || leftPoints >= winningPoints)
+    if ((currentTime > m_killCooldown + 1 && currentTime - m_timeOfDeath < m_killCooldown) || m_rightPoints >= m_winningPoints || m_leftPoints >= m_winningPoints)
         return;
 
-    ball->SetPosition(ball->position + ballDirection * ball->speed);
+    m_ball->SetPosition(m_ball->m_position + m_ballDirection * m_ball->m_speed);
 
     SetBouncerYPos();
 
@@ -70,73 +65,79 @@ void Pong::FixedUpdate(float fixedTimeStep, float currentTime)
 
 void Pong::SetBouncerYPos()
 {
-    if (inputs.leftBouncerDown)
-        leftBouncerYPos += bouncerMoveSpeed;
+    if (m_inputs.m_leftBouncerDown)
+        m_leftBouncerYPos += m_bouncerMoveSpeed;
 
-    if (inputs.leftBouncerUp)
-        leftBouncerYPos -= bouncerMoveSpeed;
+    if (m_inputs.m_leftBouncerUp)
+        m_leftBouncerYPos -= m_bouncerMoveSpeed;
 
-    if (inputs.rightBouncerDown)
-        rightBouncerYPos += bouncerMoveSpeed;
+    if (m_inputs.m_rightBouncerDown)
+        m_rightBouncerYPos += m_bouncerMoveSpeed;
 
-    if (inputs.rightBouncerUp)
-        rightBouncerYPos -= bouncerMoveSpeed;
+    if (m_inputs.m_rightBouncerUp)
+        m_rightBouncerYPos -= m_bouncerMoveSpeed;
 
-    float min = bouncerHeight * 0.5f;
-    float max = screenResolution.y - bouncerHeight * 0.5f;
-    leftBouncerYPos = Library::clamp(leftBouncerYPos, min, max);
-    rightBouncerYPos = Library::clamp(rightBouncerYPos, min, max);
+    float min = m_bouncerHeight * 0.5f;
+    float max = m_screenResolution.y - m_bouncerHeight * 0.5f;
+    m_leftBouncerYPos = Library::clamp(m_leftBouncerYPos, min, max);
+    m_rightBouncerYPos = Library::clamp(m_rightBouncerYPos, min, max);
 
-    leftBouncer.y = (int)round(leftBouncerYPos) - ((int)(bouncerHeight * 0.5f));
-    rightBouncer.y = (int)round(rightBouncerYPos) - ((int)(bouncerHeight * 0.5f));
+    m_leftBouncer.y = (int)round(m_leftBouncerYPos) - ((int)(m_bouncerHeight * 0.5f));
+    m_rightBouncer.y = (int)round(m_rightBouncerYPos) - ((int)(m_bouncerHeight * 0.5f));
 }
 
 void Pong::CheckBallPosition()
 {
-    Vector2 topRightCornerBall = Vector2(ball->position.x + ball->diameter * 0.5f, ball->position.y - ball->diameter * 0.5f);
-    Vector2 topLeftCornerRBouncer = Vector2(rightBouncer.x, rightBouncer.y);
+    Vector2 topRightCornerBall = Vector2(m_ball->m_position.x + m_ball->m_diameter * 0.5f, m_ball->m_position.y - m_ball->m_diameter * 0.5f);
+    Vector2 topLeftCornerRBouncer = Vector2(m_rightBouncer.x, m_rightBouncer.y);
 
-    Vector2 topLeftCornerBall = Vector2(topRightCornerBall.x - ball->diameter, topRightCornerBall.y);
-    Vector2 topRightCornerLBouncer = Vector2(leftBouncer.x + bouncerWidth, leftBouncer.y);
+    Vector2 topLeftCornerBall = Vector2(topRightCornerBall.x - m_ball->m_diameter, topRightCornerBall.y);
+    Vector2 topRightCornerLBouncer = Vector2(m_leftBouncer.x + m_bouncerWidth, m_leftBouncer.y);
 
     // If bouncing on right bouncer, change direction
-    if (topRightCornerBall.x >= topLeftCornerRBouncer.x && topRightCornerBall.y + ball->diameter > topLeftCornerRBouncer.y && topRightCornerBall.y < topLeftCornerRBouncer.y + bouncerHeight)
+    if (topRightCornerBall.x >= topLeftCornerRBouncer.x && topRightCornerBall.y + m_ball->m_diameter > topLeftCornerRBouncer.y && topRightCornerBall.y < topLeftCornerRBouncer.y + m_bouncerHeight)
     {
-        float midOfBouncer = topLeftCornerRBouncer.y + bouncerHeight * 0.5f;
-        float bottomOfBouncer = topLeftCornerRBouncer.y + bouncerHeight;
-        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, ball->position.y), -1, 1), -1);
+        float midOfBouncer = topLeftCornerRBouncer.y + m_bouncerHeight * 0.5f;
+        float bottomOfBouncer = topLeftCornerRBouncer.y + m_bouncerHeight;
+        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->m_position.y), -1, 1), -1);
+        return;
     }
 
     // If bouncing on left bouncer, change direction
-    if (topLeftCornerBall.x <= topRightCornerLBouncer.x && topLeftCornerBall.y + ball->diameter > topRightCornerLBouncer.y && topLeftCornerBall.y < topRightCornerLBouncer.y + bouncerHeight)
+    if (topLeftCornerBall.x <= topRightCornerLBouncer.x && topLeftCornerBall.y + m_ball->m_diameter > topRightCornerLBouncer.y && topLeftCornerBall.y < topRightCornerLBouncer.y + m_bouncerHeight)
     {
-        float midOfBouncer = topRightCornerLBouncer.y + bouncerHeight * 0.5f;
-        float bottomOfBouncer = topRightCornerLBouncer.y + bouncerHeight;
-        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, ball->position.y), -1, 1), 1);
+        float midOfBouncer = topRightCornerLBouncer.y + m_bouncerHeight * 0.5f;
+        float bottomOfBouncer = topRightCornerLBouncer.y + m_bouncerHeight;
+        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->m_position.y), -1, 1), 1);
+        return;
     }
 
     // If bouncing on top edge, reflect current vector based on the normal
     if(topLeftCornerBall.y <= 0)
     {
-        BounceOnEdge(topEdgeNormal);
+        BounceOnEdge(m_topEdgeNormal);
+        return;
     }
 
     // If bouncing on bottom edge, reflect current vector based on the normal
-    if(ball->position.y + ball->diameter * 0.5f >= screenResolution.y)
+    if(m_ball->m_position.y + m_ball->m_diameter * 0.5f >= m_screenResolution.y)
     {
-        BounceOnEdge(bottomEdgeNormal);
+        BounceOnEdge(m_bottomEdgeNormal);
+        return;
     }
 
     // If touching left wall, give right side a point and reset ball
-    if (ball->position.x - ball->diameter * 0.5f <= 0)
+    if (m_ball->m_position.x - m_ball->m_diameter * 0.5f <= 0)
     {
-        OnTouchHorizontalWall(leftWallNormal);
+        OnTouchHorizontalWall(m_leftWallNormal);
+        return;
     }
 
     // If touching right wall, give left side a point and reset ball
-    if (ball->position.x + ball->diameter * 0.5f >= screenResolution.x)
+    if (m_ball->m_position.x + m_ball->m_diameter * 0.5f >= m_screenResolution.x)
     {
-        OnTouchHorizontalWall(rightWallNormal);
+        OnTouchHorizontalWall(m_rightWallNormal);
+        return;
     }
 }
 
@@ -144,76 +145,76 @@ void Pong::OnTouchHorizontalWall(Vector2 normal)
 {
     if (normal.x > 0)
     {
-        playerThatScored = 2;
-        rightPoints++;
+        m_playerThatScored = 2;
+        m_rightPoints++;
     }
     else
     {
-        playerThatScored = 1;
-        leftPoints++;
+        m_playerThatScored = 1;
+        m_leftPoints++;
     }
 
-    ballDirection = -normal;
-    ball->SetPosition(screenResolution.x * 0.5f, screenResolution.y * 0.5f);
+    m_ballDirection = -normal;
+    m_ball->SetPosition(m_screenResolution.x * 0.5f, m_screenResolution.y * 0.5f);
 
-    if (leftPoints >= winningPoints || rightPoints >= winningPoints)
+    if (m_leftPoints >= m_winningPoints || m_rightPoints >= m_winningPoints)
     {
-        int midOfScreen = screenResolution.y * 0.5f;
+        int midOfScreen = m_screenResolution.y * 0.5f;
 
-        leftBouncerYPos = midOfScreen;
-        rightBouncerYPos = midOfScreen;
-        leftBouncer.y = midOfScreen - ((int)(bouncerHeight * 0.5f));
-        rightBouncer.y = midOfScreen - ((int)(bouncerHeight * 0.5f));
+        m_leftBouncerYPos = midOfScreen;
+        m_rightBouncerYPos = midOfScreen;
+        m_leftBouncer.y = midOfScreen - ((int)(m_bouncerHeight * 0.5f));
+        m_rightBouncer.y = midOfScreen - ((int)(m_bouncerHeight * 0.5f));
     }
 
-    timeOfDeath = currentTime;
+    m_timeOfDeath = m_currentTime;
 }
 
 void Pong::BounceOnEdge(Vector2 normal)
 {
-    Vector2 offsetVector = normal * (Vector2::Dot(normal, ballDirection) * 2.0f);
-    ballDirection = ballDirection - offsetVector;
+    Vector2 offsetVector = normal * (Vector2::Dot(normal, m_ballDirection) * 2.0f);
+    m_ballDirection = m_ballDirection - offsetVector;
 }
 
 void Pong::BounceOnBouncer(float yPosOnBouncer, float xDirection)
 {
     Vector2 newDirection = Vector2(xDirection, yPosOnBouncer);
     newDirection.Normalize();
-    ballDirection = newDirection;
+    m_ballDirection = newDirection;
 }
 
 void Pong::DrawGraphics(SDL_Renderer* renderer)
 {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 
-    if(!gameStarted)
+    if(!m_gameStarted)
         ShowReadyText(renderer);
 
     DrawCounters(renderer);
-    SDL_RenderFillRect(renderer, &leftBouncer);
-    SDL_RenderFillRect(renderer, &rightBouncer);
+    SDL_RenderFillRect(renderer, &m_leftBouncer);
+    SDL_RenderFillRect(renderer, &m_rightBouncer);
 
-    if ((currentTime < killCooldown + 1 || currentTime - timeOfDeath > killCooldown) && leftPoints < winningPoints && rightPoints < winningPoints)
-        SDL_RenderFillRect(renderer, ball->rect);
+    if ((m_currentTime < m_killCooldown + 1 || m_currentTime - m_timeOfDeath > m_killCooldown) && m_leftPoints < m_winningPoints && m_rightPoints < m_winningPoints)
+        SDL_RenderFillRect(renderer, m_ball->m_rect);
     else
         ShowPlayerScoredText(renderer);
 }
 
 void Pong::DrawCounters(SDL_Renderer* renderer)
 {
-    std::string leftString = std::to_string(leftPoints);
+    std::string leftString = std::to_string(m_leftPoints);
     int leftLength = leftString.length();
 
-    auto leftNumberDisplays = SymbolDisplay::GetSymbols(leftString, screenResolution, pixelSizeText,
-        Vector2(screenResolution.x * 0.5f - counterXOffsetFromCenter - characterWidth * leftLength + (leftLength - 1) * pixelSizeText, counterYPos));
+    auto leftNumberDisplays = SymbolDisplay::GetSymbols(leftString, m_screenResolution, m_pixelSizeText,
+        Vector2(m_screenResolution.x * 0.5f - m_counterXOffsetFromCenter - m_characterWidth * leftLength + (leftLength - 1) * m_pixelSizeText, m_counterYPos));
 
     for (int i = 0; i < leftNumberDisplays.size(); i++)
     {
         leftNumberDisplays[i].Draw(renderer);
     }
 
-    auto rightNumberDisplays = SymbolDisplay::GetSymbols(std::to_string(rightPoints), screenResolution, pixelSizeText,
-        Vector2Int(screenResolution.x * 0.5f + counterXOffsetFromCenter, counterYPos));
+    auto rightNumberDisplays = SymbolDisplay::GetSymbols(std::to_string(m_rightPoints), m_screenResolution, m_pixelSizeText,
+        Vector2Int(m_screenResolution.x * 0.5f + m_counterXOffsetFromCenter, m_counterYPos));
 
     for (int i = 0; i < rightNumberDisplays.size(); i++)
     {
@@ -225,10 +226,10 @@ void Pong::ShowPlayerScoredText(SDL_Renderer* renderer)
 {
     std::string suffix = " scored";
 
-    if (leftPoints >= winningPoints || rightPoints >= winningPoints)
+    if (m_leftPoints >= m_winningPoints || m_rightPoints >= m_winningPoints)
         suffix = " won";
 
-    auto displays = SymbolDisplay::GetSymbolsCentered("player " + std::to_string(playerThatScored) + suffix, screenResolution, pixelSizeText, textYPos);
+    auto displays = SymbolDisplay::GetSymbolsCentered("player " + std::to_string(m_playerThatScored) + suffix, m_screenResolution, m_pixelSizeText, m_textYPos);
     for (int i = 0; i < displays.size(); i++)
     {
         displays[i].Draw(renderer);
@@ -237,34 +238,9 @@ void Pong::ShowPlayerScoredText(SDL_Renderer* renderer)
 
 void Pong::ShowReadyText(SDL_Renderer* renderer)
 {
-    auto displays = SymbolDisplay::GetSymbolsCentered("get ready", screenResolution, pixelSizeText, textYPos);
+    auto displays = SymbolDisplay::GetSymbolsCentered("get ready", m_screenResolution, m_pixelSizeText, m_textYPos);
     for (int i = 0; i < displays.size(); i++)
     {
         displays[i].Draw(renderer);
     }
-}
-
-Ball::Ball(Vector2Int screenResolution)
-{
-    this->screenResolution = screenResolution;
-    rect = new SDL_Rect {0, 0, diameter, diameter};
-    SetPosition(screenResolution.x * 0.5f, screenResolution.y * 0.5f);
-}
-
-Ball::~Ball()
-{
-    delete rect;
-}
-
-void Ball::SetPosition(float x, float y)
-{
-    position = Vector2(x, y);
-    SetPosition(position);
-}
-
-void Ball::SetPosition(Vector2 pos)
-{
-    position = pos;
-    rect->x = pos.x - diameter * 0.5f;
-    rect->y = pos.y - diameter * 0.5f;
 }

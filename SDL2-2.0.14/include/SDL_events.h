@@ -324,7 +324,7 @@ typedef struct SDL_JoyBallEvent
     Uint32 type;        /**< ::SDL_JOYBALLMOTION */
     Uint32 timestamp;   /**< In milliseconds, populated using SDL_GetTicks() */
     SDL_JoystickID which; /**< The joystick instance id */
-    Uint8 ball;         /**< The joystick trackball index */
+    Uint8 m_ball;         /**< The joystick trackball index */
     Uint8 padding1;
     Uint8 padding2;
     Uint8 padding3;
