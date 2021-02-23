@@ -324,11 +324,11 @@ static bool sym_z[5][3] =
 };
 #pragma endregion
 
-class SymbolDisplay
+struct SymbolDisplay
 {
 private:
-    std::vector<SDL_Rect> m_rects;
-    int m_pixelSize;
+    std::vector<SDL_Rect> rects;
+    int pixelSize;
 public:
 	SymbolDisplay(Vector2Int position, int pixelSize, const bool inputData[5][3]);
     SymbolDisplay(Vector2Int position, int pixelSize, int numberToDisplay);

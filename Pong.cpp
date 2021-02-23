@@ -56,7 +56,7 @@ void Pong::FixedUpdate(float fixedTimeStep, float currentTime)
     if ((currentTime > m_killCooldown + 1 && currentTime - m_timeOfDeath < m_killCooldown) || m_rightPoints >= m_winningPoints || m_leftPoints >= m_winningPoints)
         return;
 
-    m_ball->SetPosition(m_ball->m_position + m_ballDirection * m_ball->m_speed);
+    m_ball->SetPosition(m_ball->position + m_ballDirection * m_ball->speed);
 
     SetBouncerYPos();
 
@@ -65,16 +65,16 @@ void Pong::FixedUpdate(float fixedTimeStep, float currentTime)
 
 void Pong::SetBouncerYPos()
 {
-    if (m_inputs.m_leftBouncerDown)
+    if (m_inputs.leftBouncerDown)
         m_leftBouncerYPos += m_bouncerMoveSpeed;
 
-    if (m_inputs.m_leftBouncerUp)
+    if (m_inputs.leftBouncerUp)
         m_leftBouncerYPos -= m_bouncerMoveSpeed;
 
-    if (m_inputs.m_rightBouncerDown)
+    if (m_inputs.rightBouncerDown)
         m_rightBouncerYPos += m_bouncerMoveSpeed;
 
-    if (m_inputs.m_rightBouncerUp)
+    if (m_inputs.rightBouncerUp)
         m_rightBouncerYPos -= m_bouncerMoveSpeed;
 
     float min = m_bouncerHeight * 0.5f;
@@ -88,27 +88,27 @@ void Pong::SetBouncerYPos()
 
 void Pong::CheckBallPosition()
 {
-    Vector2 topRightCornerBall = Vector2(m_ball->m_position.x + m_ball->m_diameter * 0.5f, m_ball->m_position.y - m_ball->m_diameter * 0.5f);
+    Vector2 topRightCornerBall = Vector2(m_ball->position.x + m_ball->diameter * 0.5f, m_ball->position.y - m_ball->diameter * 0.5f);
     Vector2 topLeftCornerRBouncer = Vector2(m_rightBouncer.x, m_rightBouncer.y);
 
-    Vector2 topLeftCornerBall = Vector2(topRightCornerBall.x - m_ball->m_diameter, topRightCornerBall.y);
+    Vector2 topLeftCornerBall = Vector2(topRightCornerBall.x - m_ball->diameter, topRightCornerBall.y);
     Vector2 topRightCornerLBouncer = Vector2(m_leftBouncer.x + m_bouncerWidth, m_leftBouncer.y);
 
     // If bouncing on right bouncer, change direction
-    if (topRightCornerBall.x >= topLeftCornerRBouncer.x && topRightCornerBall.y + m_ball->m_diameter > topLeftCornerRBouncer.y && topRightCornerBall.y < topLeftCornerRBouncer.y + m_bouncerHeight)
+    if (topRightCornerBall.x >= topLeftCornerRBouncer.x && topRightCornerBall.y + m_ball->diameter > topLeftCornerRBouncer.y && topRightCornerBall.y < topLeftCornerRBouncer.y + m_bouncerHeight)
     {
         float midOfBouncer = topLeftCornerRBouncer.y + m_bouncerHeight * 0.5f;
         float bottomOfBouncer = topLeftCornerRBouncer.y + m_bouncerHeight;
-        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->m_position.y), -1, 1), -1);
+        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->position.y), -1, 1), -1);
         return;
     }
 
     // If bouncing on left bouncer, change direction
-    if (topLeftCornerBall.x <= topRightCornerLBouncer.x && topLeftCornerBall.y + m_ball->m_diameter > topRightCornerLBouncer.y && topLeftCornerBall.y < topRightCornerLBouncer.y + m_bouncerHeight)
+    if (topLeftCornerBall.x <= topRightCornerLBouncer.x && topLeftCornerBall.y + m_ball->diameter > topRightCornerLBouncer.y && topLeftCornerBall.y < topRightCornerLBouncer.y + m_bouncerHeight)
     {
         float midOfBouncer = topRightCornerLBouncer.y + m_bouncerHeight * 0.5f;
         float bottomOfBouncer = topRightCornerLBouncer.y + m_bouncerHeight;
-        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->m_position.y), -1, 1), 1);
+        BounceOnBouncer(Library::clamp(Library::InverseLerp(midOfBouncer, bottomOfBouncer, m_ball->position.y), -1, 1), 1);
         return;
     }
 
@@ -120,21 +120,21 @@ void Pong::CheckBallPosition()
     }
 
     // If bouncing on bottom edge, reflect current vector based on the normal
-    if(m_ball->m_position.y + m_ball->m_diameter * 0.5f >= m_screenResolution.y)
+    if(m_ball->position.y + m_ball->diameter * 0.5f >= m_screenResolution.y)
     {
         BounceOnEdge(m_bottomEdgeNormal);
         return;
     }
 
     // If touching left wall, give right side a point and reset ball
-    if (m_ball->m_position.x - m_ball->m_diameter * 0.5f <= 0)
+    if (m_ball->position.x - m_ball->diameter * 0.5f <= 0)
     {
         OnTouchHorizontalWall(m_leftWallNormal);
         return;
     }
 
     // If touching right wall, give left side a point and reset ball
-    if (m_ball->m_position.x + m_ball->m_diameter * 0.5f >= m_screenResolution.x)
+    if (m_ball->position.x + m_ball->diameter * 0.5f >= m_screenResolution.x)
     {
         OnTouchHorizontalWall(m_rightWallNormal);
         return;
@@ -195,7 +195,7 @@ void Pong::DrawGraphics(SDL_Renderer* renderer)
     SDL_RenderFillRect(renderer, &m_rightBouncer);
 
     if ((m_currentTime < m_killCooldown + 1 || m_currentTime - m_timeOfDeath > m_killCooldown) && m_leftPoints < m_winningPoints && m_rightPoints < m_winningPoints)
-        SDL_RenderFillRect(renderer, m_ball->m_rect);
+        SDL_RenderFillRect(renderer, m_ball->rect);
     else
         ShowPlayerScoredText(renderer);
 }

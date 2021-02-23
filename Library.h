@@ -127,7 +127,7 @@ public:
 };
 
 template <class T>
-class Matrix2D
+struct Matrix2D
 {
 public:
 	int count;
@@ -140,11 +140,11 @@ public:
 		this->rows = rows;
 		this->columns = columns;
 
-		m_arry = new T*[rows];
+		arry = new T*[rows];
 
 		for (int i = 0; i < rows; i++)
 		{
-			m_arry[i] = new T[columns];
+			arry[i] = new T[columns];
 		}
 	}
 
@@ -152,18 +152,27 @@ public:
 	{
 		for (int i = 0; i < rows; i++)
 		{
-			delete[] m_arry[i];
+			delete[] arry[i];
 		}
 
-		delete[] m_arry;
+		delete[] arry;
 	}
 
 	T* At(int row, int column)
 	{
-		return &m_arry[row][column];
+		if (!isTransposed)
+			return &arry[row][column];
+		else
+			return &arry[column][row];
+	}
+
+	void Transpose()
+	{
+		isTransposed = !isTransposed;
 	}
 private:
-	T** m_arry;
+	T** arry = nullptr;
+	bool isTransposed = false;
 };
 
 class Library

@@ -1,2 +1,37 @@
-﻿  Main.cpp
+﻿  GameHandler.cpp
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\GameHandler.cpp(17,24): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+  Pong.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\tgmath.h(27): warning UCRT4000: The Universal CRT implementation of tgmath.h does not conform to the C99 standard. Functionality equivalent to the type-generic functions provided by tgmath.h is available in <ctgmath> when compiling as C++. If compiling in C++17 mode or higher (/std:c++17), this header will automatically include <ctgmath> instead. You can define _CRT_SILENCE_NONCONFORMING_TGMATH_H to acknowledge that you have received this warning.
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(350,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(352,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(353,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(385,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(388,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(389,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(402,75): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,77): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(92,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(95,93): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(95,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(162,25): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(164,29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(165,30): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(206,41): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(209,144): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Pong.cpp(217,48): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  PongBall.cpp
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\PongBall.cpp(22,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\PongBall.cpp(23,21): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  SymbolDisplay.cpp
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(350,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(352,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(353,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(385,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(388,28): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(389,21): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.h(402,75): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\SymbolDisplay.cpp(44,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\Library.h(191): warning C4715: 'Library::clamp': not all control paths return a value
   First Cpp.vcxproj -> C:\Users\Oliver Lebert\Documents\GitHub\FGFirstCpp\x64\Debug\First Cpp.exe

@@ -20,8 +20,8 @@ SymbolDisplay::SymbolDisplay(Vector2Int position, int pixelSize, bool* inputData
 
 void SymbolDisplay::Init(Vector2Int position, int pixelSize, bool* inputData)
 {
-	this->m_pixelSize = pixelSize;
-	m_rects = std::vector<SDL_Rect>();
+	this->pixelSize = pixelSize;
+	rects = std::vector<SDL_Rect>();
 	bool temp[5][3] = {};
 
 	memcpy(temp, inputData, sizeof(bool) * 5 * 3);
@@ -33,7 +33,7 @@ void SymbolDisplay::Init(Vector2Int position, int pixelSize, bool* inputData)
 			if (temp[i][j])
 			{
 				SDL_Rect rect = SDL_Rect{ (int)position.x + j * pixelSize, (int)position.y + i * pixelSize, pixelSize, pixelSize };
-				m_rects.push_back(rect);
+				rects.push_back(rect);
 			}
 		}
 	}
@@ -41,9 +41,9 @@ void SymbolDisplay::Init(Vector2Int position, int pixelSize, bool* inputData)
 
 void SymbolDisplay::Draw(SDL_Renderer* renderer)
 {
-	int size = m_rects.size();
+	int size = rects.size();
 	for (int i = 0; i < size; i++)
 	{
-		SDL_RenderFillRect(renderer, &m_rects.at(i));
+		SDL_RenderFillRect(renderer, &rects.at(i));
 	}
 }
